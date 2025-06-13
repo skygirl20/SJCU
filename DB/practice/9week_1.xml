@@ -1,0 +1,128 @@
+-- 1. order by
+select
+    *
+from
+	book
+order by bookname;
+
+select
+    *
+from
+	book
+order by price, bookname;
+    
+select
+    *
+from
+    book
+order by price desc, publisher asc;
+
+-- 2.집계함수
+-- (1) sum
+select 
+    sum(saleprice)
+from
+    orders;
+
+-- (2) avg, min, max
+select
+	sum(saleprice) as total,
+    avg(saleprice) as avg,
+    min(saleprice) as min,
+    max(saleprice) as maximum
+from
+	orders
+where
+	custid = 2;
+
+-- (3) count
+select
+	count(*)
+from
+	orders;
+
+-- (4) 집계
+select
+	count(publisher)
+from
+	book;
+
+select
+	count(distinct publisher)
+from
+	book;
+
+-- (5) group by
+select 
+    custid, count(*) as 도서수량, sum(saleprice) as 총액
+from
+	orders
+group by custid
+
+-- (6) having
+select
+	custid, count(*) as 수량
+from
+	orders
+where
+    saleprice >= 8000
+group by custid
+having 
+	count(*) >= 2;
+
+-- 퀴즈1
+select
+	custid, count(*) as 수량
+from
+	orders
+group by custid
+having 
+	count(*) >= 2;
+
+-- 퀴즈2
+select
+	custid, count(*) as 수량
+from
+	orders
+where
+    saleprice >= 8000    
+group by custid;
+
+-- 퀴즈3
+select
+	*
+from
+	orders
+where
+    saleprice >= 8000
+group by custid
+having 
+	count(*) >= 2;
+
+-- 연습문제1 (1)
+select
+	sum(saleprice) as 구매액
+from
+	orders
+where
+	custid = 1;
+
+-- 연습문제1 (2)
+select
+	count(*) as 구매수
+from
+	orders
+where
+	custid = 1;
+
+-- 연습문제2 (1)
+select
+	count(*) as 도서수
+from
+	book;
+
+-- 연습문제2 (2)
+select
+	count(distinct publisher) as 출판사수
+from
+	book;
