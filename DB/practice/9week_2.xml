@@ -1,0 +1,70 @@
+-- 조인(단순조인)
+select 
+	* 
+from 
+	customer, orders 
+where 
+	customer.custid = orders.custid
+
+-- 조인(2개 테이블)
+select 
+	name, sum(saleprice) 
+from 
+	customer, orders 
+where 
+	customer.custid = orders.custid 
+group by customer.name
+
+-- 연습
+select 
+	name, sum(saleprice) 
+from 
+	customer, orders 
+where 
+	customer.custid = orders.custid 
+group by customer.name 
+order by customer.name
+
+-- 연습문제 (3)
+select 
+	sum(saleprice) as 구매액 
+from 
+	customer, orders 
+where 
+	customer.custid = orders.custid 
+	and customer.name like '박지성'
+    
+-- 연습문제 (4)
+select 
+	count(*) as 도서수 
+from 
+	customer, orders 
+where 
+	customer.custid = orders.custid 
+	and customer.name like '박지성'
+
+-- 조인(3개 테이블)
+select 
+	customer.name, book.bookname 
+from 
+	customer, orders, book 
+where 
+	customer.custid = orders.custid 
+	and orders.bookid = book.bookid
+
+-- 연습문제
+select 
+	customer.name, book.bookname 
+from 
+	customer, orders, book 
+where 
+	customer.custid = orders.custid 
+	and orders.bookid = book.bookid 
+    and orders.saleprice = 20000
+
+-- 외부조인
+select
+	customer.name, saleprice
+from
+	customer left outer join orders
+	on customer.custid = orders.custid;
