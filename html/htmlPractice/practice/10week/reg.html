@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Title</title>
+        <script>
+            function test(){
+                var reg = /^[A-Za-z]{1}[A-Za-z0-9](?=.*?[#?!@$^&*-]).{6,12}$/;
+                var a = document.getElementById("id");
+                if(!reg.test(a)){
+                    alert("정규식에 맞지 않습니다.");
+                    return false;
+                }else{
+                    alert("정규식 성공!!!");
+                    return true;
+                }
+            }
+        </script>
+    </head>
+    <body>
+        아이디 <input type="text" id="id">
+        <button type="button" onclick="test();">확인</button>
+    </body>
+</html>
